@@ -4,10 +4,9 @@ const controller = require('./controllers');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.send({
-        code:0,
-        message:`The api is functional and looks good!`
-    })
+    res.statusCode=200;
+    let newsData=controller.getData();
+    res.json(newsData);
 });
 
 module.exports = router;
