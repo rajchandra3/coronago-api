@@ -73,15 +73,11 @@ var successResponse = (res)=>{
     })
 }
 
-/**
- * @param {Object} res @param {Number} code @param {String} message @param {Boolean} loggedIn @param {Object} response object
- */
-var sendResponse = (res,code,message,loggedIn,data)=>{
+var sendResponseWithData = (res,code,message,data)=>{
     res.json({
         code : code,
         message : message,
-        loggedIn : loggedIn,
-        content : data
+        payload : data
     });
 }
 
@@ -110,7 +106,7 @@ module.exports = {
     hasMoreCharactersResponse,
     invalidQueryResponse,
     isProfaneResponse,
-    sendResponse,
+    sendResponseWithData,
     successResponse,
     unableToUpdateError,
     unauthorizedAccess
