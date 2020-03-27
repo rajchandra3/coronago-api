@@ -7,8 +7,10 @@ const cheerio=require('cheerio');
 /* GET home page. */
 router.get('/', function(req, res) {
 
-    axios.get('https://www.deccanherald.com/national/coronavirus-news-live-updates-india-sees-a-surge-in-positive-cases-as-tally-reaches-660-799686.html#1')
-    .then((response)=>{
+    
+  //axios.get('https://www.deccanherald.com/national/coronavirus-news-live-updates-india-sees-a-surge-in-positive-cases-as-tally-reaches-660-799686.html#1')
+  axios.get('https://www.deccanherald.com/national/coronavirus-india-news-live-updates-statewise-total-number-of-cases-deaths-statistics-lockdown-latest-news-817763.html#1')
+  .then((response)=>{
 
         //console.log('Loaded..');
 
