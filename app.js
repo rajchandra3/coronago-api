@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const CORS = require('./src/middlewares/cors');
 require('dotenv').config();
 
 const news_api = require('./src/components/news-api/index');
@@ -18,6 +19,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//handle cors
+app.use((req,res,next)=>{
+    CORS.removeCORS(req,res,next);
+});
+
 
 app.use('/getNews', news_api);
 
