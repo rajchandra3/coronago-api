@@ -2,7 +2,10 @@ exports.removeCORS = (req, res, next) =>{
     var allowedOrigins = [
         'http://localhost:5500',
         'http://localhost:5501',
-        'http://localhost:3000'
+        'http://localhost:3000',
+        'https://fight-corona.rajchandra.me',
+        'https://corona-go.info',
+        'https://www.corona-go.info'
     ];
     var origin = req.headers.origin;
     if(origin == "https://www.rajchandra.me" || origin == `http://localhost:${process.env.PORT}`){
