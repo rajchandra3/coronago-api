@@ -7,6 +7,7 @@ const CORS = require('./src/middlewares/cors');
 require('dotenv').config();
 
 const news_api = require('./src/components/news-api/index');
+const indian_stats_api = require('./src/components/indian-stats-api/index');
 
 const app = express();
 
