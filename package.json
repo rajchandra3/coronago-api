@@ -16,6 +16,8 @@
     "google-spreadsheet": "^3.0.10",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "node-cron": "^2.0.3",
+    "twit": "^2.2.11"
   }
 }
