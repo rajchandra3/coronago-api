@@ -10,7 +10,7 @@ var T = new Twit(config);
 // 		console.log(err);
 // 	});
 
-cron.schedule("* * 3 * * *", () => {
+cron.schedule("* */3 * * *", () => {
 	main();
 });
 const main = async () => {
@@ -22,7 +22,7 @@ const main = async () => {
 const tweetHandler = (state, i) => {
 	console.log("received state", state);
 	setTimeout(() => {
-		let status = `Current status of ${state[i].loc}. Total number of Indian confirmed cases ${state[i].confirmedCasesIndian}, Foreign confirmed cases ${state[i].confirmedCasesForeign}.Total deaths ${state[i].deaths}. Total discharged ${state[i].discharged}`;
+		let status = `Current status of ${state[i].loc}. Total number of Indian confirmed cases ${state[i].confirmedCasesIndian}, Foreign confirmed cases ${state[i].confirmedCasesForeign}. Total deaths ${state[i].deaths}. Total discharged ${state[i].discharged}`;
 		tweet(status);
 		console.log(status);
 		console.log(i);
