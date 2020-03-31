@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const news_api = require("./src/components/news-api/index");
 const indian_stats_api = require("./src/components/indian-stats-api/index");
-const twitter = require("./src/components/twitter/twitter");
+const twitter_bot = require("./src/components/twitter/index");
 
 const app = express();
 
@@ -27,9 +27,8 @@ app.use((req, res, next) => {
 	CORS.removeCORS(req, res, next);
 });
 
-app.use("/getNews", news_api);
-
 app.use("/news-api", news_api);
+app.use('/twitter-bot',twitter_bot);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
