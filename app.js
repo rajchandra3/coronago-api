@@ -27,6 +27,13 @@ app.use((req, res, next) => {
 	CORS.removeCORS(req, res, next);
 });
 
+app.get('/', (req, res) =>{
+	res.send({
+		code:0,
+		message:`Welcome to corona-go app!`
+	})
+});
+
 app.use("/news-api", news_api);
 app.use('/twitter-bot',twitter_bot);
 
