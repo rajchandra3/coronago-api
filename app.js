@@ -4,12 +4,27 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const CORS = require('./src/middlewares/cors');
+const cron = require('node-cron');
+const controller = require('./src/components/upload/controller');
 require('dotenv').config();
 
 const news_api = require('./src/components/news-api/index');
 const indian_stats_api = require('./src/components/indian-stats-api/index');
 
 const app = express();
+
+require('./db/connection');
+
+// fetch data every 15 minutes
+cron.schedule("0 */15 * * * *",(req,res,next)=>{
+  console.log('fetching every 15 minute');
+  controller.csv_upload(req,res,next);
+});
+
+
+
+const upload = require('./src/components/upload/index');
+
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +36,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 //handle cors
 app.use((req,res,next)=>{
     CORS.removeCORS(req,res,next);
@@ -28,6 +45,8 @@ app.use((req,res,next)=>{
 
 
 app.use('/getNews', news_api);
+app.use('/',upload);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
