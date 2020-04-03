@@ -23,8 +23,8 @@ const tweetHandler = (state_data, i) => {
 			More on https://corona-go.info #coronavirus #IndiaFightsCorona 
 			`;
 		tweet(status);
-		if (i < state.length - 1) {
-			tweetHandler(state, i + 1);
+		if (i < state_data.length - 1) {
+			tweetHandler(state_data, i + 1);
 		}
 	}, 1000 * 60);
 };
