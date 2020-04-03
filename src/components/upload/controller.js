@@ -1,8 +1,9 @@
 const covid_data_schema = require('./schema');
 const axios = require('axios');
 const shortid = require('shortid');
+const responses = require('../../middlewares/responses');
 
-exports.csv_upload = (req,res,next)=>{
+exports.csv_upload = (req,res)=>{
 
     covid_data_schema.deleteMany({}).then(()=>{
 
@@ -24,8 +25,6 @@ exports.csv_upload = (req,res,next)=>{
                 console.log(`${e}`);
             });
         });
-
-        
         }).catch((e)=>{
             console.log(`${e}`);
         });
@@ -39,9 +38,9 @@ exports.csv_upload = (req,res,next)=>{
 
 exports.corona_data = (req,res)=>{
     covid_data_schema.find({}).then((data)=>{
-        res.json(data);
+        responses.sendResponseWithData(res,200,'success',data);
     }).catch((e)=>{
-        res.json({code: 1,message: 'Some error occurred.Please try again later'});
+        responses.errorResponse(res,e);
     });
 };
 
