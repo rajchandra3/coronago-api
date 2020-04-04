@@ -4,7 +4,7 @@ const Controller = require('./controller');
 const Respond = require('../../middlewares/responses');
 
 /* GET home page. */
-router.get('/', (req, res) =>{
+router.get('/get', (req, res) =>{
     const count= req.query.count || 10;
     Controller.fetchNews(count,(data)=>{
         if(data.news){

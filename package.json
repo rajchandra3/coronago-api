@@ -19,7 +19,9 @@
     "mongoose": "^5.9.6",
     "morgan": "~1.9.1",
     "node-cron": "^2.0.3",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "google-spreadsheet": "^3.0.10",
+    "twit": "^2.2.11"
   },
   "devDependencies": {
     "chai": "^4.2.0",
