@@ -9,19 +9,21 @@ cron.schedule("* */3 * * *", () => {
 });
 
 const main = async () => {
-	let data = await axios.get(
+	let response = await axios.get(
 		"https://api.covid19india.org/data.json"
 	);
-	tweetHandler(data.statewise, 0);
+	// console.log(response.data)
+	tweetHandler(response.data.statewise,0);
 };
 
-const tweetHandler = (state_data, i) => {
+const tweetHandler = (state_data,i) => {
 	setTimeout(() => {
 		let status = `
 			${state_data[i].state=="Total"?"India":state_data[i].state} has total ${state_data[i].confirmed} ${state_data[i].confirmed==1?'case':'cases'},
 			with ${state_data[i].deaths} ${state_data[i].deaths==1?'death':'deaths'}, while ${state_data[i].recovered} ${state_data[i].deaths==1?'patient':'patients'} have recovered so far.
 			More on https://corona-go.info #coronavirus #IndiaFightsCorona 
 			`;
+		// console.log(status);
 		tweet(status);
 		if (i < state_data.length - 1) {
 			tweetHandler(state_data, i + 1);
