@@ -1,16 +1,21 @@
-const createError = require("http-errors");
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const CORS = require("./src/middlewares/cors");
-require("dotenv").config();
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const CORS = require('./src/middlewares/cors');
+const upload = require('./src/components/upload/index');
+
+require('dotenv').config();
 
 const news_api = require("./src/components/news-api/index");
 const indian_stats_api = require("./src/components/indian-stats-api/index");
 const twitter_bot = require("./src/components/twitter/index");
 
 const app = express();
+
+require('./db/connection');
+
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+
 
 //handle cors
 app.use((req, res, next) => {
@@ -33,6 +40,9 @@ app.get('/', (req, res) =>{
 		message:`Welcome to corona-go app!`
 	})
 });
+
+app.use('/getNews', news_api);
+app.use('/',upload);
 
 app.use("/news-api", news_api);
 app.use('/twitter-bot',twitter_bot);
